@@ -1,61 +1,396 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Form</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <title>Raj Hydroflex Pvt. Ltd. Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 20px;
+        }
+
+
+        .form-container {
+            display: flex;
+            flex-direction: column;
+            max-width: 500px;
+            margin: 10px auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label,
+        input {
+            font-size: 14px;
+            display: inline-block;
+            vertical-align: middle;
+            margin: 0;
+            color: #333;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 5px;
+            margin-top: 1px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+
+        .buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        button {
+            flex: 1;
+            padding: 12px;
+            margin: 5px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            text-align: center;
+            transition: 0.3s ease;
+        }
+
+        button:hover {
+            opacity: 0.8;
+        }
+
+
+        .popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .popup-content {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            width: 80%;
+            max-width: 350px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+
+        .popup-buttons {
+            margin-top: 15px;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .popup-buttons button {
+            flex: 1;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+
+        @media (max-width: 600px) {
+            .form-container {
+                width: 90%;
+                padding: 15px;
+            }
+
+            .buttons {
+                flex-direction: column;
+            }
+
+            button {
+                width: 100%;
+            }
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            border: 2px solid grey;
+            background-color: #f0f0f0;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        label {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 5px;
+            margin-top: 1px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: block;
+            cursor: pointer;
+            margin: 5px;
+            border-radius: 5px;
+            align-items: center;
+        }
+
+        .inline-text {
+            display: inline;
+        }
+    </style>
 </head>
+
 <body>
-    <h2>Submit Information</h2>
-    <form action="/submit" method="POST" enctype="multipart/form-data">
+    <form action="/submit" method="POST" enctype="multipart/form-data" class="form-container" id="dataForm">
+        <h3 style="display: inline-text">Raj Hydroflex Pvt. Ltd.</h3><br>
         <label for="serial_number">Sr.No.:</label>
-        <input type="text" name="serial_number" value={{ serial_number }} required readonly> <br><br>
+        <input type="text" name="serial_number" value={{ serial_number }} required readonly>
 
         <label for="date">Date:</label>
-        <input type="text" name="date" value={{ date }} required readonly> <br><br>
+        <input type="text" name="date" value={{ date }} required readonly>
+        <label for="photo1">Upload Photo 1:</label>
+        <input type="file" name="photo1" accept="image/*" capture="environment">
 
-        <label for="photo1">Upload Photo 1:</label><br>
-        <input type="file" name="photo1"><br><br>
+        <label for="photo2">Upload Photo 2:</label>
+        <input type="file" name="photo2" accept="image/*" capture="environment">
 
-        <label for="photo2">Upload Photo 2:</label><br>
-        <input type="file" name="photo2"><br><br>
+        <label for="photo3">Upload Photo 3:</label>
+        <input type="file" name="photo3" accept="image/*" capture="environment">
 
-        <label for="photo3">Upload Photo 3:</label><br>
-        <input type="file" name="photo3"><br><br>
+        <label for="company_name">Company Name:</label>
+        <input type="text" name="company_name" id="company_name" required>
 
-        <label for="company_name">Company Name:</label><br>
-        <input type="text" name="company_name" required><br><br>
-        
-        <label for="contact_person">Contact Person:</label><br>
-        <input type="text" name="contact_person" required><br><br>
+        <label for="contact_person">Contact Person:</label>
+        <input type="text" name="contact_person" id="contact_person" required>
 
-        <label for="designation">Designation:</label><br>
+        <label for="designation">Designation:</label>
         <select name="designation">
-            <option value="Manager">Manager</option>
-            <option value="Developer">Developer</option>
-            <option value="Tester">Tester</option>
-            <!-- Add more designations as needed -->
-        </select><br><br>
+            <option value="Proprietor">Proprietor</option>
+            <option value="Partner">Partner</option>
+            <option value="Sales Department">Sales Department</option>
+            <option value="Purchase Department">Purchase Department</option>
+            <option value="Accounts Department">Accounts Department</option>
+            <option value="Other">Other</option>
+        </select>
 
-        <label for="whatsapp_number">Whatsapp Number:</label><br>
-        <input type="text" name="whatsapp_number"><br><br>
+        <label for="whatsapp_number">Whatsapp Number:</label>
+        <input type="text" name="whatsapp_number" id="whatsapp_number" pattern="[6-9]{1}[0-9]{9}">
 
-        <label for="phone_number">Phone Number:</label><br>
-        <input type="text" name="phone_number" required><br><br>
+        <label for="phone_number">Phone Number:</label>
+        <input type="text" name="phone_number" required id="phone_number" pattern="[6-9]{1}[0-9]{9}">
 
-        <label for="email">Email:</label><br>
-        <input type="email" name="email" required><br><br>
+        <label for="email">Email:</label>
+        <input type="email" name="email" required id="email">
 
-        <label for="address">Address:</label><br>
-        <textarea name="address" rows="4" cols="50"></textarea><br><br>
+        <label for="address">Address:</label>
+        <textarea name="address" rows="4" cols="50"></textarea>
 
-        <label for="additional_info">Additional Info:</label><br>
-        <textarea name="additional_info" rows="4" cols="50"></textarea><br><br>
+        <label for="additional_info">Additional Info:</label>
+        <textarea name="additional_info" rows="4" cols="50"></textarea>
 
-        
-        <button type="whatsapp">Whatsapp</button>
-        <button type="submit">Submit</button>
-        <button type="exit">Exit</button>
+        <div class="buttons">
+            <button type="button" class="whatsapp" onclick="sendWhatsApp()">Whatsapp</button>
+            <button type="button" class="submit" onclick="openPopup()">Submit</button>
+            <button type="button" class="clear" onclick="openExitPopup()">Clear</button>
+        </div>
     </form>
+
+    <div class="popup" id="popup">
+        <div class="popup-content">
+            <h3>Confirm Submission</h3>
+            <p>Are you sure you want to submit the form, and not send a WhatsApp message as well?</p>
+            <div class="popup-buttons">
+                <button class="confirm" onclick="submitForm()">Yes, submit</button>
+                <button class="cancel" onclick="closePopup()">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="popup" id="popup-clear">
+        <div class="popup-content">
+            <h3>Confirm Clear</h3>
+            <p>Are you sure you want to clear the screen?</p>
+            <div class="popup-buttons">
+                <button class="confirm" onclick="onClear()">Yes, clear</button>
+                <button class="cancel" onclick="closeExitPopup()">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+        function sendWhatsApp() {
+            let whatsapp_number = document.getElementById("whatsapp_number");
+            let phone = whatsapp_number.value;
+            let message = "Greetings from Raj Hydroflex Pvt Ltd!\nThank you for visiting us at Mahatech 2025. It was a pleasure connecting with you!\nPlease check out our profile and let us know if we can assist you with any requirements. Looking forward to staying in touch!\n\nSwati Pawale\ninfo@rajhydroflex.com"
+
+            // Select specific form elements using their ID
+            var companyName = document.getElementById('company_name');
+            var contactPerson = document.getElementById('contact_person');
+            var email = document.getElementById('email');
+            var phoneNumber = document.getElementById('phone_number');
+
+            // Check validity of each field
+            if (!companyName.checkValidity()) {
+                alert('Please provide a valid Company Name.');
+                companyName.focus();  // Optionally focus on the field
+                return;
+            }
+
+            if (!contactPerson.checkValidity()) {
+                // event.preventDefault();
+                alert('Please provide a valid Contact Person.');
+                contactPerson.focus();  // Focus on the Contact Person field
+                return;
+            }
+
+            if (!email.checkValidity()) {
+                // event.preventDefault();
+                alert('Please provide a valid Email address.');
+                email.focus();
+                return;
+            }
+
+            if (!whatsapp_number.checkValidity()) {
+                alert('Please provide a valid WhatsApp Number.');
+                whatsapp_number.focus();  // Optionally focus on the field
+                return;
+            }
+
+            if (!phoneNumber.checkValidity()) {
+                // event.preventDefault();
+                alert('Please provide a valid Phone Number.');
+                phoneNumber.focus();
+                return;
+            }
+
+            if (phone) {
+                let url = `https://wa.me/91${phone}?text=${encodeURIComponent(message)}`;
+                window.open(url, '_blank');
+            } else {
+                return;
+            }
+
+            const form = document.getElementById('dataForm');
+            const formData = new FormData(form);
+
+
+            fetch('/submit', {
+                method: 'POST',
+                body: formData,
+            })
+                .then(response => {
+                    if (response.ok) {
+                        alert('Form submitted successfully');
+                        clearForm();
+                    }
+                    else {
+                        alert('Error: Submission Failed, Please retry.');
+                    }
+                });
+        }
+        function openPopup() {
+            document.getElementById("popup").style.display = "flex";
+        }
+        function closePopup() {
+            document.getElementById("popup").style.display = "none";
+        }
+        function openExitPopup() {
+            document.getElementById("popup-clear").style.display = "flex";
+        }
+        function closeExitPopup() {
+            document.getElementById("popup-clear").style.display = "none";
+        }
+        function submitForm() {
+            closePopup();
+
+            const form = document.getElementById('dataForm');
+            const formData = new FormData(form);
+
+            // Select specific form elements using their ID
+            var companyName = document.getElementById('company_name');
+            var contactPerson = document.getElementById('contact_person');
+            var email = document.getElementById('email');
+            var phoneNumber = document.getElementById('phone_number');
+
+            // Check validity of each field
+            if (!companyName.checkValidity()) {
+                alert('Please provide a valid Company Name.');
+                companyName.focus();  // Optionally focus on the field
+                return;
+            }
+
+            if (!contactPerson.checkValidity()) {
+                // event.preventDefault();
+                alert('Please provide a valid Contact Person.');
+                contactPerson.focus();  // Focus on the Contact Person field
+                return;
+            }
+
+            if (!phoneNumber.checkValidity()) {
+                // event.preventDefault();
+                alert('Please provide a valid Phone Number.');
+                phoneNumber.focus();
+                return;
+            }
+            
+            if (!email.checkValidity()) {
+                // event.preventDefault();
+                alert('Please provide a valid Email address.');
+                email.focus();
+                return;
+            }
+
+            fetch('/submit', {
+                method: 'POST',
+                body: formData,
+            })
+                .then(response => {
+                    if (response.ok) {
+                        alert('Form submitted successfully');
+                        clearForm();
+                    }
+                    else {
+                        alert('Error: Submission Failed, Please retry.');
+                    }
+                });
+
+        }
+        function onClear() {
+            clearForm();
+            closeExitPopup();
+        }
+        function clearForm() {
+            window.location.reload()
+        }
+
+    </script>
+
 </body>
+
 </html>
