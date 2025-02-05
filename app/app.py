@@ -118,4 +118,4 @@ def thank_you():
     return render_template('thank_you.html')
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=8092)
+    app.run(host='0.0.0.0', port=8090)
