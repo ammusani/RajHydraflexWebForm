@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+</head>
+<body>
+    <h2>Submit Information</h2>
+    <form action="/submit" method="POST" enctype="multipart/form-data">
+        <label for="serial_number">Sr.No.:</label>
+        <input type="text" name="serial_number" value={{ serial_number }} required readonly> <br><br>
+
+        <label for="date">Date:</label>
+        <input type="text" name="date" value={{ date }} required readonly> <br><br>
+
+        <label for="photo1">Upload Photo 1:</label><br>
+        <input type="file" name="photo1"><br><br>
+
+        <label for="photo2">Upload Photo 2:</label><br>
+        <input type="file" name="photo2"><br><br>
+
+        <label for="photo3">Upload Photo 3:</label><br>
+        <input type="file" name="photo3"><br><br>
+
+        <label for="company_name">Company Name:</label><br>
+        <input type="text" name="company_name" required><br><br>
+        
+        <label for="contact_person">Contact Person:</label><br>
+        <input type="text" name="contact_person" required><br><br>
+
+        <label for="designation">Designation:</label><br>
+        <select name="designation">
+            <option value="Manager">Manager</option>
+            <option value="Developer">Developer</option>
+            <option value="Tester">Tester</option>
+            <!-- Add more designations as needed -->
+        </select><br><br>
+
+        <label for="whatsapp_number">Whatsapp Number:</label><br>
+        <input type="text" name="whatsapp_number"><br><br>
+
+        <label for="phone_number">Phone Number:</label><br>
+        <input type="text" name="phone_number" required><br><br>
+
+        <label for="email">Email:</label><br>
+        <input type="email" name="email" required><br><br>
+
+        <label for="address">Address:</label><br>
+        <textarea name="address" rows="4" cols="50"></textarea><br><br>
+
+        <label for="additional_info">Additional Info:</label><br>
+        <textarea name="additional_info" rows="4" cols="50"></textarea><br><br>
+
+        
+        <button type="whatsapp">Whatsapp</button>
+        <button type="submit">Submit</button>
+        <button type="exit">Exit</button>
+    </form>
+</body>
+</html>

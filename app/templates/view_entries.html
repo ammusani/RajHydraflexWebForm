@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Entries</title>
+</head>
+<body>
+    <h2>All Submitted Entries</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Serial Number</th>
+                <th>Date</th>
+                <th>Name</th>
+                <th>Photos</th>
+                <th>Email</th>
+                <th>Additional Info</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for entry in entries %}
+                <tr>
+                    <td>{{ entry.serial_number }}</td>
+                    <td>{{ entry.date }}</td>
+                    <td>{{ entry.name }}</td>
+                    <td>
+                        <img src="{{ url_for('static', filename='uploads/' + entry.photo1) }}" width="100">
+                        <img src="{{ url_for('static', filename='uploads/' + entry.photo2) }}" width="100">
+                        <img src="{{ url_for('static', filename='uploads/' + entry.photo3) }}" width="100">
+                    </td>
+                    <td>{{ entry.email }}</td>
+                    <td>{{ entry.additional_info }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
